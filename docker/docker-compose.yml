@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+    healthchecker:
+        build:
+            context: ./healthchecker
+            dockerfile: Dockerfile-Dev
+        container_name: healthchecker
+        volumes:
+            - "../:/var/www/healthchecker"

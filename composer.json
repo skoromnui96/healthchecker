@@ -1,0 +1,53 @@
+{
+  "name": "eglobal/healthchecker",
+  "type": "project",
+  "license": "proprietary",
+  "require": {
+    "php": ">=8.0",
+    "ext-ctype": "*",
+    "ext-iconv": "*",
+    "ext-json": "*",
+    "aws/aws-sdk-php": "^3.248",
+    "doctrine/dbal": "^3.5",
+    "guzzlehttp/guzzle": "^7.5",
+    "php-amqplib/rabbitmq-bundle": "^2.11",
+    "predis/predis": "^2.0",
+    "snc/redis-bundle": "^4.3",
+    "symfony/config": "6.*",
+    "symfony/console": "^6.1",
+    "symfony/dependency-injection": "6.*",
+    "symfony/http-kernel": "6.*",
+    "symfony/monolog-bundle": ">=3.8",
+    "webmozart/assert": "^1.8"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.12",
+    "phpstan/phpstan": "^1.8",
+    "phpunit/phpunit": "^9.5"
+  },
+  "config": {
+    "preferred-install": {
+      "*": "dist"
+    },
+    "sort-packages": true,
+    "allow-plugins": {
+      "symfony/flex": true
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "EGlobal\\HealthCheck\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\EGlobal\\HealthCheck\\": "tests/"
+    }
+  },
+  "scripts": {
+    "auto-scripts": {
+      "cache:clear": "symfony-cmd",
+      "assets:install %PUBLIC_DIR%": "symfony-cmd"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+FROM php:8.1-cli
+
+# Dev tools
+RUN apt-get update && apt-get install -y mc nano git vim bash-completion telnet libssl-dev && rm -r /var/lib/apt/lists/*
+
+#PHP extensions
+RUN docker-php-ext-install sockets
+
+# Common extension dependencies
+RUN apt-get update && apt-get install -y libssl-dev libc-client2007e-dev libkrb5-dev \
+    && rm -r /var/lib/apt/lists/*
+
+# Composer
+RUN curl -o ./composer-setup.php https://getcomposer.org/installer \
+    && php composer-setup.php --no-ansi --install-dir=/usr/local/bin --filename=composer --version=2.4.4 \
+    && rm -rf composer-setup.php
+
+# gosu
+RUN apt-get update && apt-get install -y gosu && rm -r /var/lib/apt/lists/*
+
+# Add system group/user
+RUN groupadd -r php-dev && useradd -r -g root -s /bin/bash -m php-dev
+
+ENV PATH "/var/www/healthchecker/bin:/var/www/healthchecker/vendor/bin:$PATH"
+RUN echo "export PATH=$PATH" >> /home/php-dev/.bashrc
+
+# Process managers
+RUN apt-get update && apt-get install -y supervisor && rm -r /var/lib/apt/lists/*
+COPY conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+WORKDIR /var/www/healthchecker
+
+COPY entrypoint.sh /
+
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["/usr/bin/supervisord"]

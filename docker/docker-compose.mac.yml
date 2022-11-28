@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+    healthchecker:
+        volumes:
+            - "healthchecker-native-osx-sync:/var/www/healthchecker:nocopy"
+            - "../vendor:/var/www/healthchecker/vendor:delegated"
+
+volumes:
+    healthchecker-native-osx-sync:
+        external: true

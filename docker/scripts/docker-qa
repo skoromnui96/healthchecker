@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+CONTAINERS_PREFIX=healthchecker
+
+cd $(dirname $0)/../ \
+    && docker-compose -f docker-compose-qa.yml -p ${CONTAINERS_PREFIX} build \
+    && docker-compose -f docker-compose-qa.yml -p ${CONTAINERS_PREFIX} up -d; \
+    cd ->/dev/null

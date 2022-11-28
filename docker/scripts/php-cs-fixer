@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+docker exec healthchecker bash -c "gosu php-dev php-cs-fixer $*"

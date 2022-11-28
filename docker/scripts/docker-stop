@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+CONTAINERS_PREFIX=healthchecker
+
+cd $(dirname $0)/../ \
+    && docker-compose -p ${CONTAINERS_PREFIX} kill \
+    && yes | docker-compose -p ${CONTAINERS_PREFIX} rm>/dev/null; \
+    cd ->/dev/null
+
+if command -v "docker-sync" >/dev/null 2>&1 ; then
+    cd $(dirname $0)/../../ \
+        && docker-sync stop -c ./docker/docker-sync.yml --dir=./var/.docker-sync; \
+        cd ->/dev/null
+fi

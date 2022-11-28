@@ -1,0 +1,25 @@
+parameters:
+    reportUnmatchedIgnoredErrors: false
+    checkMissingIterableValueType: false
+    inferPrivatePropertyTypeFromConstructor: true
+    excludePaths:
+        - vendor/*
+    ignoreErrors:
+        -
+            message: '#Property (.)+ has no typehint specified#'
+            path: %currentWorkingDirectory%/src
+        -
+            message: '#Call to an undefined method Symfony\\Component\\Config\\Definition\\Builder\\NodeDefinition::children\(\).#'
+            path: %currentWorkingDirectory%/src
+        -
+            message: '#Parameter (.)+ of class (.)+ constructor expects string, array<string>\|bool\|string\|null given.#'
+            path: %currentWorkingDirectory%/src
+        -
+            message: '#Cannot call method enumNode\(\) on Symfony\\Component\\Config\\Definition\\Builder\\NodeParentInterface\|null.#'
+            path: %currentWorkingDirectory%/src
+        -
+            message: '#Instanceof between DateTimeImmutable and DateTime will always evaluate to false.#'
+            path: %currentWorkingDirectory%/src
+        -
+            message: "#^Parameter \\#1 \\$record of method EGlobal\\\\MonologFormatters\\\\Formatter\\\\EGlobalLogFormatter\\:\\:format\\(\\) expects array\\('message' \\=\\> string, 'context' \\=\\> array, 'level' \\=\\> 100\\|200\\|250\\|300\\|400\\|500\\|550\\|600, 'level_name' \\=\\> 'ALERT'\\|'CRITICAL'\\|'DEBUG'\\|'EMERGENCY'\\|'ERROR'\\|'INFO'\\|'NOTICE'\\|'WARNING', 'channel' \\=\\> string, 'datetime' \\=\\> DateTimeImmutable, 'extra' \\=\\> array\\), array given\\.$#"
+            path: %currentWorkingDirectory%/src/Formatter/EGlobalLogFormatter.php

@@ -1,0 +1,3 @@
+fx_healthcheck:
+  resource: "@HealthCheckBundle/Controller/HealthCheckAction.php"
+  type:     annotation
